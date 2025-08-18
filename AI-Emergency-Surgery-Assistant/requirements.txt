@@ -1,0 +1,7 @@
+modal>=0.57.0
+gradio>=4.36.1
+anthropic>=0.34.2
+duckduckgo_search>=5.3.1
+beautifulsoup4>=4.12.3
+requests>=2.31.0
+python-dotenv>=1.0.1
