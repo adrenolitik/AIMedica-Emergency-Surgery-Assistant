@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## AI Emergency Surgery Assistant
 
-## Getting Started
+Monorepo: Next.js frontend + Gradio (Python) backend.
 
-First, run the development server:
+- Frontend: Next.js app in `src/` with `next.config.ts`
+- Backend: Gradio app in `AI-Emergency-Surgery-Assistant/` (`app.py`)
+
+Reference: Hugging Face Space `aimedica/AI-Emergency-Surgery-Assistant` [`https://huggingface.co/spaces/aimedica/AI-Emergency-Surgery-Assistant?logs=container`]
+
+### 1) Local setup
+
+Node.js 18+ and Python 3.10+ recommended.
 
 ```bash
+# Frontend
+npm i
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# http://localhost:3000
+
+# Backend (in another terminal)
+cd AI-Emergency-Surgery-Assistant
+python -m venv .venv
+.venv/Scripts/activate  # Windows PowerShell
+pip install -r requirements.txt
+copy env.example .env   # Fill ANTHROPIC_API_KEY
+python app.py           # Gradio at http://127.0.0.1:7860
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Environment variables (`AI-Emergency-Surgery-Assistant/.env`):
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+ANTHROPIC_API_KEY=your_key
+ANTHROPIC_MODEL=claude-3-sonnet-20240229
+MODAL_CLINIC_ENDPOINT=https://aayushraj0324--healthmate-clinic-lookup-search-clinics.modal.run
+GRADIO_SHARE=false
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 2) Push to GitHub
 
-## Learn More
+Create an empty repo on GitHub, then run:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+git init
+git add .
+git commit -m "Initial commit: AI Emergency Surgery Assistant"
+git branch -M main
+git remote add origin https://github.com/<YOUR_USERNAME>/<REPO>.git
+git push -u origin main
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3) Deploy options
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Vercel (frontend): Connect repo, set build to Next.js.
+- Hugging Face / Modal (backend): This repo mirrors the Space at [`https://huggingface.co/spaces/aimedica/AI-Emergency-Surgery-Assistant?logs=container`].
 
-## Deploy on Vercel
+### Notes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Gradio works without `ANTHROPIC_API_KEY`, but AI analysis will be disabled as designed in `app.py`.
+- `lookup_clinics` uses a remote endpoint with a DuckDuckGo fallback if the remote is unavailable.
