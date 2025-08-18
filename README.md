@@ -58,3 +58,4 @@ git push -u origin main
 - Gradio works without `ANTHROPIC_API_KEY`, but AI analysis will be disabled as designed in `app.py`.
 - `lookup_clinics` uses a remote endpoint with a DuckDuckGo fallback if the remote is unavailable.
 # AI-Emergency-Surgery-Assistant
+# AI-Emergency-Surgery-Assistant
