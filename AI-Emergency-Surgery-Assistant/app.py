@@ -12,7 +12,7 @@ load_dotenv()
 ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
 # claude-3-sonnet-20240229 was retired on July 21, 2025.
 # Using claude-haiku-4-5-20251014 as the new default (fast & cost-efficient).
-ANTHROPIC_MODEL = os.getenv("ANTHROPIC_MODEL", "claude-haiku-4-5-20251014")
+ANTHROPIC_MODEL = os.getenv("ANTHROPIC_MODEL", "claude-haiku-4-5-20251001")
 MODAL_CLINIC_ENDPOINT = os.getenv(
     "MODAL_CLINIC_ENDPOINT",
     "https://aayushraj0324--healthmate-clinic-lookup-search-clinics.modal.run",
